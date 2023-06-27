@@ -1,0 +1,111 @@
+{
+  "name": "acreage",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "-=-=-=-=-=-=-=-=-=-=-=-=-=": "",
+    "check-format": "prettier -c .",
+    "check-lint": "eslint .",
+    "check-types": "tsc -p tsconfig.json --pretty --noEmit",
+    "check-all": "yarn check-format && echo '\nChecking linting issues...' && yarn check-lint && echo 'All good with linting \n' && echo 'Checking Types...' && yarn check-types && echo '\n \t🚀 🚀  Everything is good  🚀 🚀 \n'",
+    "=-=-=-=-=-=-=-=-=-=-=-=-=": "",
+    "fix-format": "prettier -w .",
+    "fix-lint": "eslint --fix .",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "3.0.0",
+    "@tanstack/react-query": "^4.28.0",
+    "@tanstack/react-query-devtools": "^4.29.3",
+    "@testing-library/dom": "^9.2.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/js-cookie": "^3.0.3",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-helmet": "^6.1.6",
+    "@types/uuid": "^9.0.1",
+    "axios": "^1.3.4",
+    "camelcase-keys": "^8.0.2",
+    "classnames": "^2.3.2",
+    "csstype": "^3.1.1",
+    "eslint-plugin-rulesdir": "^0.2.2",
+    "js-cookie": "^3.0.1",
+    "lint-staged": "^13.2.0",
+    "prettier": "^2.8.7",
+    "rc-slider": "^10.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.3",
+    "react-helmet": "^6.1.0",
+    "react-hero-icon": "^0.0.7",
+    "react-hook-form": "^7.43.8",
+    "react-hot-toast": "^2.4.0",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^6.9.0",
+    "react-tooltip": "^5.10.1",
+    "snakecase-keys": "^5.4.5",
+    "yup": "0.32.11"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.37.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "husky": "^8.0.3",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1",
+    "tailwindcss-themer": "^3.0.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.1",
+    "vite-tsconfig-paths": "^4.0.7",
+    "vitest": "^0.29.8",
+    "web-vitals": "^3.3.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier -c ",
+      "eslint .",
+      "bash -c tsc -p tsconfig.json --pretty --noEmit",
+      "git add "
+    ]
+  }
+}
