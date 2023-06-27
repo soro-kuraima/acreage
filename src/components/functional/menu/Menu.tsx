@@ -25,7 +25,7 @@ export function Menu() {
           />
           <h1 className="hidden md:block text-center text-white font-semibold">
             {' '}
-            Abhishek
+            Abhishek Sharma
           </h1>
         </div>
       </div>
