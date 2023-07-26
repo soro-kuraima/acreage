@@ -6,20 +6,18 @@
 
 import * as React from 'react';
 import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { IconProps, ViewProps } from '@aws-amplify/ui-react';
+import { ImageProps, TextProps, ViewProps } from '@aws-amplify/ui-react';
 export declare type PrimitiveOverrideProps<T> = Partial<T> &
   React.DOMAttributes<HTMLDivElement>;
-export declare type ArrowleftlineOverridesProps = {
-  Arrowleftline?: PrimitiveOverrideProps<ViewProps>;
-  Group?: PrimitiveOverrideProps<ViewProps>;
-  Vector21737?: PrimitiveOverrideProps<IconProps>;
-  Vector21738?: PrimitiveOverrideProps<IconProps>;
+export declare type ProfileOverridesProps = {
+  Profile?: PrimitiveOverrideProps<ViewProps>;
+  Image?: PrimitiveOverrideProps<ImageProps>;
+  '\u270F\uFE0F Greeting'?: PrimitiveOverrideProps<TextProps>;
+  '\u270F\uFE0F Name'?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type ArrowleftlineProps = React.PropsWithChildren<
+export declare type ProfileProps = React.PropsWithChildren<
   Partial<ViewProps> & {
-    overrides?: ArrowleftlineOverridesProps | undefined | null;
+    overrides?: ProfileOverridesProps | undefined | null;
   }
 >;
-export default function Arrowleftline(
-  props: ArrowleftlineProps
-): React.ReactElement;
+export default function Profile(props: ProfileProps): React.ReactElement;

@@ -16,14 +16,14 @@ import avatar from 'assets/react.svg';
 export function Menu() {
   return (
     <div className="bg-background-main">
-      <div className="avatar-wrapper mt-16 mb-24 flex justify-center">
+      <div className="avatar-wrapper mb-24 mt-16 flex justify-center">
         <div className="avatar w-10 md:w-24">
           <img
             src={avatar}
             alt=""
-            className="bg-orange-300 rounded-[50%] mb-2"
+            className="mb-2 rounded-[50%] bg-orange-300"
           />
-          <h1 className="hidden lg:block text-center text-white font-semibold">
+          <h1 className="hidden text-center font-semibold text-white lg:block">
             {' '}
             Abhishek Sharma
           </h1>
@@ -38,16 +38,16 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
-                          <MdHome className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                          <MdHome className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Market
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
-                          <MdHome className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                          <MdHome className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Market
                           </span>
                         </div>
@@ -61,16 +61,16 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
-                          <MdAddHome className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                          <MdAddHome className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Create Property
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
-                          <MdAddHome className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                          <MdAddHome className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Create Property
                           </span>
                         </div>
@@ -84,16 +84,16 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
-                          <MdViewList className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                          <MdViewList className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Properties
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
-                          <MdViewList className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                          <MdViewList className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Properties
                           </span>
                         </div>
@@ -107,16 +107,16 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
-                          <MdBarChart className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                          <MdBarChart className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Investments
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
-                          <MdBarChart className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                          <MdBarChart className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Investments
                           </span>
                         </div>
@@ -130,16 +130,16 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
-                          <MdManageAccounts className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                          <MdManageAccounts className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Account
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
-                          <MdManageAccounts className="text-gray-300 text-2xl" />
-                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
+                          <MdManageAccounts className="text-2xl text-gray-300" />
+                          <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Account
                           </span>
                         </div>

@@ -1,4 +1,4 @@
-const prettierConfig = require('./.prettierrc.json');
+const prettierConfig = require('./prettier.config');
 const rulesDirPlugin = require('eslint-plugin-rulesdir');
 const fs = require('fs');
 

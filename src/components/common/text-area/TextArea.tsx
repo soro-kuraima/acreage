@@ -166,10 +166,10 @@ export function TextArea({
   return (
     <>
       <div
-        className={`m-0 p-0 flex flex-col justify-start ${
+        className={`m-0 flex flex-col justify-start p-0 ${
           fullWidth ? 'w-full' : sizeClasses[size]
         }`}>
-        <div className="text-style-buttons bg-background-light flex justify-start gap-2 border-x border-t rounded-t rounded-b-none border-background-contrastText focus:border focus:border-primary-main">
+        <div className="text-style-buttons flex justify-start gap-2 rounded-b-none rounded-t border-x border-t border-background-contrastText bg-background-light focus:border focus:border-primary-main">
           <Button size="small" variant="text" color="secondary">
             Paragraph{' '}
             <span>
@@ -205,7 +205,7 @@ export function TextArea({
             <HiListBullet />
           </Button>
         </div>
-        <div className="w-full p-0 m-0">
+        <div className="m-0 w-full p-0">
           {control ? (
             <Controller
               name={name as string}
@@ -220,7 +220,7 @@ export function TextArea({
           {!disableHelperText && (
             <p
               className={classNames(
-                'text-left mx-0 my-0 text-sm text-background-contrastText ',
+                'mx-0 my-0 text-left text-sm text-background-contrastText ',
                 {
                   '!text-error-main': !!fieldError?.message || error,
                 }
@@ -231,10 +231,10 @@ export function TextArea({
         </div>
       </div>
       <div
-        className={`min-w-[12rem] rounded m-0 px-0 py-0 ${
+        className={`m-0 min-w-[12rem] rounded px-0 py-0 ${
           fullWidth ? 'w-full' : sizeClasses[size]
         }`}>
-        <div className="w-full h-full p-0 rounded bg-background-light text-background-contrastText flex justify-center items-center">
+        <div className="flex h-full w-full items-center justify-center rounded bg-background-light p-0 text-background-contrastText">
           <p className="text-center text-md">{formValue || placeholder}</p>
         </div>
       </div>

@@ -218,7 +218,7 @@
     lodash "4.17.21"
     xstate "^4.33.6"
 
-"@aws-amplify/ui-react@^4.6":
+"@aws-amplify/ui-react@^4.6.0":
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-4.6.4.tgz#879485d4d99f6125b3d0d0439d858d81acf1f00c"
   integrity sha512-6OF4F7CFm2fs3y3GO1vy9eTAXCGuh4d+rQ+DiLnIKMkOsKnzYLXzk20wUeL4aceVR0NkZVyolgBAf3+yfTVbMw==
@@ -6128,6 +6128,11 @@ prettier-linter-helpers@^1.0.0:
   integrity sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   dependencies:
     fast-diff "^1.1.2"
+
+prettier-plugin-tailwindcss@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.4.1.tgz#f7ed664199540978b2cbd037bac3a337d6689e86"
+  integrity sha512-hwn2EiJmv8M+AW4YDkbjJ6HlZCTzLyz1QlySn9sMuKV/Px0fjwldlB7tol8GzdgqtkdPtzT3iJ4UzdnYXP25Ag==
 
 prettier@^2.8.7:
   version "2.8.8"

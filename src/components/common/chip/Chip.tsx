@@ -31,7 +31,7 @@ export function Chip({
 }: ChipProps) {
   return (
     <div
-      className={`rounded w-max flex items-center justify-center ${sizeClasses[size]} ${colorClasses[color]} ${className}`}>
+      className={`flex w-max items-center justify-center rounded ${sizeClasses[size]} ${colorClasses[color]} ${className}`}>
       {children || 'Status'}
     </div>
   );

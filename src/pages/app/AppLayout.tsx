@@ -5,7 +5,7 @@ import { RequireAuth, Menu } from 'components/functional';
 export function AppLayout() {
   return (
     <RequireAuth>
-      <div className="App bg-background-dark min-h-screen flex flex-start">
+      <div className="App flex min-h-screen justify-center bg-background-dark">
         <Menu />
         <div className="container">
           <Outlet />

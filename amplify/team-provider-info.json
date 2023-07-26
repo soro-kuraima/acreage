@@ -10,6 +10,11 @@
       "StackName": "amplify-acreage-dev-224027",
       "StackId": "arn:aws:cloudformation:us-east-1:712563388629:stack/amplify-acreage-dev-224027/d46e51e0-297b-11ee-8118-12d32a109459",
       "AmplifyAppId": "d1acak5ojsfbtr"
+    },
+    "categories": {
+      "auth": {
+        "acreage20037f0e": {}
+      }
     }
   }
 }

@@ -72,7 +72,7 @@ export function Stepper({
   return (
     <div className="stepper-parent">
       <div className="stepper-header">
-        <div className="stepper-title px-4 flex gap-3 justify-start items-center">
+        <div className="stepper-title flex items-center justify-start gap-3 px-4">
           {currentStep === 1 && (
             <Button variant="text" size="small" onClick={() => navigate(-1)}>
               <HiChevronLeft
@@ -95,16 +95,16 @@ export function Stepper({
           <Typography variant="h2">{title}</Typography>
         </div>
         <div className="steps-container w-full px-12 py-4">
-          <div className="steps flex justify-start items-center">
+          <div className="steps flex items-center justify-start">
             {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => {
               if (step < totalSteps) {
                 return (
-                  <div key={step} className="flex justify-start items-center">
+                  <div key={step} className="flex items-center justify-start">
                     <Steps
                       color={step === currentStep ? 'primary' : 'secondary'}>
                       {step}
                     </Steps>
-                    <div className="step-line w-24 h-[1px] bg-primary-contrastText" />
+                    <div className="step-line h-[1px] w-24 bg-primary-contrastText" />
                   </div>
                 );
               }
@@ -120,9 +120,9 @@ export function Stepper({
           </div>
         </div>
       </div>
-      <div className="w-full px-12 py-4 flex flex-col justify-between items-center">
-        <div className="flex justify-between w-full">{children}</div>
-        <div className="step-buttons w-full flex justify-end">
+      <div className="flex w-full flex-col items-center justify-between px-12 py-4">
+        <div className="flex w-full justify-between">{children}</div>
+        <div className="step-buttons flex w-full justify-end">
           {currentStep < totalSteps && (
             <Button size="extraLarge" onClick={handleStepChange}>
               Next

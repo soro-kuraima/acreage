@@ -6,20 +6,15 @@
 
 import * as React from 'react';
 import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { IconProps, ViewProps } from '@aws-amplify/ui-react';
+import { IconProps } from '@aws-amplify/ui-react';
 export declare type PrimitiveOverrideProps<T> = Partial<T> &
   React.DOMAttributes<HTMLDivElement>;
-export declare type ArrowleftlineOverridesProps = {
-  Arrowleftline?: PrimitiveOverrideProps<ViewProps>;
-  Group?: PrimitiveOverrideProps<ViewProps>;
-  Vector21737?: PrimitiveOverrideProps<IconProps>;
-  Vector21738?: PrimitiveOverrideProps<IconProps>;
+export declare type MapOverridesProps = {
+  Map?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type ArrowleftlineProps = React.PropsWithChildren<
-  Partial<ViewProps> & {
-    overrides?: ArrowleftlineOverridesProps | undefined | null;
+export declare type MapProps = React.PropsWithChildren<
+  Partial<IconProps> & {
+    overrides?: MapOverridesProps | undefined | null;
   }
 >;
-export default function Arrowleftline(
-  props: ArrowleftlineProps
-): React.ReactElement;
+export default function Map(props: MapProps): React.ReactElement;

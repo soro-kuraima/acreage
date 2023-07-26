@@ -111,7 +111,7 @@ export function RadioInput({
             <label
               key={option.label}
               htmlFor={option.label}
-              className="flex items-center px-1 py-1 space-x-2">
+              className="flex items-center space-x-2 px-1 py-1">
               <input
                 type="radio"
                 id={option.label}
@@ -164,7 +164,7 @@ export function RadioInput({
         <p
           style={{ minHeight: '1rem' }}
           className={classNames(
-            'text-left m-1 text-sm text-background-contrastText ',
+            'm-1 text-left text-sm text-background-contrastText ',
             {
               '!text-error-main': !!fieldError?.message || error,
             }
