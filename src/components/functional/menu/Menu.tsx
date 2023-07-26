@@ -23,7 +23,7 @@ export function Menu() {
             alt=""
             className="bg-orange-300 rounded-[50%] mb-2"
           />
-          <h1 className="hidden md:block text-center text-white font-semibold">
+          <h1 className="hidden lg:block text-center text-white font-semibold">
             {' '}
             Abhishek Sharma
           </h1>
@@ -40,14 +40,14 @@ export function Menu() {
                       {isActive ? (
                         <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
                           <MdHome className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Market
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
                           <MdHome className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Market
                           </span>
                         </div>
@@ -63,14 +63,14 @@ export function Menu() {
                       {isActive ? (
                         <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
                           <MdAddHome className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Create Property
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
                           <MdAddHome className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Create Property
                           </span>
                         </div>
@@ -86,14 +86,14 @@ export function Menu() {
                       {isActive ? (
                         <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
                           <MdViewList className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             My Properties
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
                           <MdViewList className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             My Properties
                           </span>
                         </div>
@@ -109,14 +109,14 @@ export function Menu() {
                       {isActive ? (
                         <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
                           <MdBarChart className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             My Investments
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
                           <MdBarChart className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             My Investments
                           </span>
                         </div>
@@ -132,14 +132,14 @@ export function Menu() {
                       {isActive ? (
                         <div className="link flex items-center gap-4 p-4 bg-gradient-to-r from-indigo-400 to-indigo-700 px-8 md:px-16">
                           <MdManageAccounts className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Account
                           </span>
                         </div>
                       ) : (
                         <div className="link flex items-center gap-4 p-4 px-8  md:px-16">
                           <MdManageAccounts className="text-gray-300 text-2xl" />
-                          <span className="hidden md:block text-gray-300 font-semibold text-2xl">
+                          <span className="hidden lg:block text-gray-300 font-semibold text-2xl">
                             Account
                           </span>
                         </div>

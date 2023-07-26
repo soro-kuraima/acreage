@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import { Page } from 'components/common';
 import { RequireAuth } from 'components/functional';
+import { Account } from 'pages/app/account/Account';
 import { AppLayout } from 'pages/app/AppLayout';
 import { CreateProperty } from 'pages/app/create-property/CreateProperty';
 import { Market } from 'pages/app/market/Market';
@@ -17,7 +18,7 @@ export const routes = createBrowserRouter([
     path: '',
     element: (
       <RequireAuth>
-        <Navigate to="/app" />
+        <Navigate to="/app/market" />
       </RequireAuth>
     ),
   },
@@ -100,6 +101,14 @@ export const routes = createBrowserRouter([
         element: (
           <Page title="Property">
             <Property />
+          </Page>
+        ),
+      },
+      {
+        path: 'account',
+        element: (
+          <Page title="account">
+            <Account />
           </Page>
         ),
       },
