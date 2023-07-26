@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-acreage-dev-224027-authRole",
+      "UnauthRoleArn": "arn:aws:iam::712563388629:role/amplify-acreage-dev-224027-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::712563388629:role/amplify-acreage-dev-224027-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-acreage-dev-224027-deployment",
+      "UnauthRoleName": "amplify-acreage-dev-224027-unauthRole",
+      "StackName": "amplify-acreage-dev-224027",
+      "StackId": "arn:aws:cloudformation:us-east-1:712563388629:stack/amplify-acreage-dev-224027/d46e51e0-297b-11ee-8118-12d32a109459",
+      "AmplifyAppId": "d1acak5ojsfbtr"
+    }
+  }
+}

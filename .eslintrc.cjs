@@ -127,5 +127,5 @@ module.exports = {
     'rulesdir/invalid-query-variable-name': 'error',
     'linebreak-style': 'off',
   },
-  ignorePatterns: ['babel.config.js', 'build'],
+  ignorePatterns: ['babel.config.js', 'build', '/src/ui-components/**'],
 };
