@@ -6,20 +6,20 @@
 
 import * as React from 'react';
 import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
-import { IconProps, ViewProps } from '@aws-amplify/ui-react';
+import { TextProps, ViewProps } from '@aws-amplify/ui-react';
 export declare type PrimitiveOverrideProps<T> = Partial<T> &
   React.DOMAttributes<HTMLDivElement>;
-export declare type ArrowleftlineOverridesProps = {
-  Arrowleftline?: PrimitiveOverrideProps<ViewProps>;
-  Group?: PrimitiveOverrideProps<ViewProps>;
-  Vector21737?: PrimitiveOverrideProps<IconProps>;
-  Vector21738?: PrimitiveOverrideProps<IconProps>;
+export declare type ButtonOverridesProps = {
+  Button?: PrimitiveOverrideProps<ViewProps>;
+  '\u270F\uFE0F Label'?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
-export declare type ArrowleftlineProps = React.PropsWithChildren<
+export declare type ButtonProps = React.PropsWithChildren<
   Partial<ViewProps> & {
-    overrides?: ArrowleftlineOverridesProps | undefined | null;
+    state?: 'Active';
+    style?: 'Primary' | 'White';
+    type?: 'Default';
+  } & {
+    overrides?: ButtonOverridesProps | undefined | null;
   }
 >;
-export default function Arrowleftline(
-  props: ArrowleftlineProps
-): React.ReactElement;
+export default function Button(props: ButtonProps): React.ReactElement;

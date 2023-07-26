@@ -30,7 +30,7 @@ export function Steps({
 }: ChipProps) {
   return (
     <div
-      className={`rounded-[50%] flex items-center justify-center ${sizeClasses[size]} ${colorClasses[color]} ${className}`}>
+      className={`flex items-center justify-center rounded-[50%] ${sizeClasses[size]} ${colorClasses[color]} ${className}`}>
       {children || 'Step'}
     </div>
   );

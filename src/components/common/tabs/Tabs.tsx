@@ -15,15 +15,15 @@ export type TabProps = {
 
 export function Tabs({ tabs }: TabProps) {
   return (
-    <div className="mt-3 mx-auto pb-0 w-3/4 flex border-b-2 border-background-light mb-3 text-background-contrastText">
+    <div className="mx-auto mb-3 mt-3 flex w-3/4 border-b-2 border-background-light pb-0 text-background-contrastText">
       {tabs.map((tab: Tab) => (
         <NavLink
           key={tab.title}
           to={tab.link}
           className={({ isActive }) =>
-            `inline-block px-8 py-2 font-bold text-lg mr-5 ml-0  ${
+            `ml-0 mr-5 inline-block px-8 py-2 text-lg font-bold  ${
               isActive
-                ? 'text-primary-main border-b-2 border-background-contrastText '
+                ? 'border-b-2 border-background-contrastText text-primary-main '
                 : 'text-zinc-400 '
             }`
           }>

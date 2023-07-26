@@ -28,10 +28,10 @@ export function SearchInput({
   }, [debouncedValue]);
 
   return (
-    <div id={id} className="w-full relative flex items-center">
+    <div id={id} className="relative flex w-full items-center">
       <div
         id={id}
-        className="absolute inset-y-0 left-0 ml-6 flex items-center  pointer-events-none text-background-contrastText">
+        className="pointer-events-none absolute inset-y-0 left-0 ml-6 flex  items-center text-background-contrastText">
         <HiOutlineSearch
           className="fill-text-background-contrastText stroke-text-background-contrastText"
           size={16}
@@ -43,13 +43,13 @@ export function SearchInput({
         type="text"
         placeholder={placeholderText || 'Search'}
         onChange={(text: string) => setValue(text)}
-        className="pl-12 w-1/2 !bg-background-light border-0"
+        className="w-1/2 border-0 !bg-background-light pl-12"
         disableHelperText
         fullWidth={fullWidth}
       />
       <div
         id={id}
-        className={`absolute inset-y-0 mr-6 flex items-center  pointer-events-none text-background-contrastText ${
+        className={`pointer-events-none absolute inset-y-0 mr-6 flex  items-center text-background-contrastText ${
           fullWidth ? 'right-0' : 'right-1/2'
         }`}>
         <HiOutlineAdjustmentsHorizontal size={16} />

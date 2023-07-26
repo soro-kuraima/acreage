@@ -85,12 +85,12 @@ export function DropArea({
         `${fullWidth ? 'w-full' : 'w-52'}`
       )}>
       <div
-        className={`w-full  h-64 flex justify-center items-center grow rounded border-background-contrastText  ${
+        className={`flex  h-64 w-full grow items-center justify-center rounded border-background-contrastText  ${
           active ? 'border-primary-main' : 'border-background-contrastText'
         } `}>
         {loading ? (
           <div
-            className="flex w-fulljustify-center "
+            className="w-fulljustify-center flex "
             style={{
               width: widthRef.current.width,
               height: widthRef.current.height,

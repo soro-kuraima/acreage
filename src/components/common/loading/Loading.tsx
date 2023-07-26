@@ -1,6 +1,6 @@
 export function Loading() {
   return (
-    <div className="flex justify-center items-center h-screen dark:bg-black">
+    <div className="flex h-screen items-center justify-center dark:bg-black">
       <div className="animate-spin">
         <svg
           width="130"

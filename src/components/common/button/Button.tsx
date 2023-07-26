@@ -88,13 +88,13 @@ export function Button({
       type="button"
       disabled={disabled}
       className={classNames(
-        'flex rounded text-base !font-semibold items-center   ',
+        'flex items-center rounded text-base !font-semibold   ',
         variantColorClasses[variant][color],
         sizeClasses[size],
         className,
         {
           'w-full': fullWidth,
-          ' opacity-60 cursor-not-allowed ': disabled || loading,
+          ' cursor-not-allowed opacity-60 ': disabled || loading,
         }
       )}
       onClick={loading || disabled ? undefined : onClick}
