@@ -2,7 +2,10 @@ import React from 'react';
 
 // eslint-disable-next-line import/extensions
 import '@aws-amplify/ui-react/styles.css';
-import { Authenticator } from '@aws-amplify/ui-react';
+import {
+  Authenticator,
+  ThemeProvider as AmplifyThemeProvider,
+} from '@aws-amplify/ui-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Amplify } from 'aws-amplify';
@@ -12,6 +15,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { ErrorFallbackComponent } from 'components/functional';
 import { AppRouter } from 'router/AppRouter';
+import { acreageTheme } from 'theme/amplify-theme';
 import { ThemeProvider } from 'theme/ThemeProvider';
 
 Amplify.configure(awsExports);
@@ -23,9 +27,11 @@ export function App() {
     <Authenticator.Provider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <ErrorBoundary FallbackComponent={ErrorFallbackComponent}>
-            <AppRouter />
-          </ErrorBoundary>
+          <AmplifyThemeProvider colorMode="dark" theme={acreageTheme}>
+            <ErrorBoundary FallbackComponent={ErrorFallbackComponent}>
+              <AppRouter />
+            </ErrorBoundary>
+          </AmplifyThemeProvider>
           <Toaster position="bottom-right" />
         </ThemeProvider>
         <ReactQueryDevtools />
