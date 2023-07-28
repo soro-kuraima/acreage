@@ -62,7 +62,7 @@ const darkColors = {
     light: '#111111',
     main: '#2a2a2a',
     dark: '#000000',
-    contrastText: '#fgfgfg',
+    contrastText: '#ffffff',
   },
 };
 

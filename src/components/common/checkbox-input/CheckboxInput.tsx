@@ -19,17 +19,17 @@ type ControlProps =
       name?: never;
     };
 
-type RadioButtonProps = {
+type CheckboxProps = {
   className?: string;
   helperText?: string;
   label?: string;
   options?: string[];
-  onChange?: (value: number) => void;
+  onChange?: (values: string[]) => void;
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;
   disableHelperText?: boolean;
-  defaultValue?: string;
+  defaultValue?: string[];
   id?: string;
   size?: Size;
 } & ControlProps;
@@ -41,7 +41,7 @@ const sizeClasses: { [S in Size]: string } = {
   extraLarge: 'h-5 w-5',
 };
 
-export function RadioInput({
+export function CheckboxInput({
   className,
   helperText,
   label,
@@ -56,8 +56,8 @@ export function RadioInput({
   disableHelperText,
   id,
   size = 'medium',
-}: RadioButtonProps) {
-  const formValue = useWatch({
+}: CheckboxProps) {
+  const formValues = useWatch({
     control: control as Control,
     name: name as string,
   });
@@ -68,7 +68,7 @@ export function RadioInput({
           const splittedArray = name.split('.');
 
           return splittedArray.reduce(
-            // eslint-disable-next-line
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (acc: any, i) => acc?.[i],
             control._formState.errors
           );
@@ -86,7 +86,7 @@ export function RadioInput({
   const classes = useMemo(
     () =>
       classNames(
-        'px-2 py-2 rounded-[50%] appearance-none border-2 bg-primary border-primary-contrastText grid place-content-center scale-100 checked:border-primary-main checked:scale-50 checked:bg-primary-main checked:outline checked:outline-4 checked:outline-primary-main checked:outline-offset-8',
+        'px-2 py-2 rounded appearance-none border-2 bg-primary border-primary-contrastText grid place-content-center scale-100 checked:border-primary-main checked:scale-50 checked:bg-primary-main checked:outline checked:outline-4 checked:outline-primary-main checked:outline-offset-8',
         className,
         sizeClasses[size],
         {
@@ -96,11 +96,10 @@ export function RadioInput({
           'border border-error-main': !!fieldError?.message,
         }
       ),
-
     [className, disabled, fieldError, size]
   );
 
-  const getRadioInput = useCallback(
+  const getCheckboxInput = useCallback(
     (controlChange?: ControllerOnChangeType) => (
       <fieldset name={name} defaultValue={defaultValue} id={id}>
         <legend className="">
@@ -113,7 +112,7 @@ export function RadioInput({
               htmlFor={option}
               className="flex items-center space-x-2 px-1 py-1">
               <input
-                type="radio"
+                type="checkbox"
                 id={option}
                 name={name}
                 className={`${classes}`}
@@ -122,10 +121,20 @@ export function RadioInput({
                   control
                     ? controlChange
                     : (e) => {
-                        onChange?.(Number(e.target.value));
+                        const selectedValues = [...(formValues || [])];
+                        const optionValue = e.target.value;
+                        const index = selectedValues.indexOf(optionValue);
+
+                        if (index === -1) {
+                          selectedValues.push(optionValue);
+                        } else {
+                          selectedValues.splice(index, 1);
+                        }
+
+                        onChange?.(selectedValues);
                       }
                 }
-                checked={formValue === option}
+                checked={(formValues || []).includes(option)}
               />
               <Typography variant="subtitle1">{option}</Typography>
             </label>
@@ -142,7 +151,7 @@ export function RadioInput({
       classes,
       control,
       onChange,
-      formValue,
+      formValues,
     ]
   );
 
@@ -154,11 +163,11 @@ export function RadioInput({
           name={name as string}
           control={control as Control}
           render={({ field: { onChange: controlChange } }) =>
-            getRadioInput(controlChange)
+            getCheckboxInput(controlChange)
           }
         />
       ) : (
-        getRadioInput()
+        getCheckboxInput()
       )}
       {!disableHelperText && (
         <p

@@ -11,5 +11,6 @@ export { ContainerSkeleton } from 'components/common/skeletons/ContainerSkeleton
 export { Tabs } from 'components/common/tabs/Tabs';
 export { TextArea } from 'components/common/text-area/TextArea';
 export { RadioInput } from 'components/common/radio-input/RadioInput';
+export { CheckboxInput } from 'components/common/checkbox-input/CheckboxInput';
 export { Loading } from 'components/common/loading/Loading';
 export { LoadingSpinner } from 'components/common/loading/LoadingSpinner';

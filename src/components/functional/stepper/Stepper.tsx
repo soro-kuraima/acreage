@@ -6,14 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { Button, Steps, Typography } from 'components/common';
 
-type PropertyOwner = {
-  owner: number;
-  units: number;
-  englishName: string;
-  nationalId: string;
-  email: string;
-};
-
 type StepperProps = {
   totalSteps: number;
   currentStep: number;
@@ -21,14 +13,8 @@ type StepperProps = {
   onStepChange: (step: number) => void;
   onStepsComplete: () => void;
   title: string;
-  propertyOwners?: PropertyOwner[];
+  pageFields: string[][];
 };
-
-const pageFields = [
-  ['propertyLongName', 'propertyTradingName', 'propertyDescription'],
-  ['serviceType', 'propertyType', 'initialUnitPrice', 'yieldPercent'],
-  ['totalUnits'],
-];
 
 export function Stepper({
   totalSteps,
@@ -37,12 +23,10 @@ export function Stepper({
   onStepChange,
   onStepsComplete,
   title,
-  propertyOwners,
+  pageFields,
 }: StepperProps) {
   const navigate = useNavigate();
   const methods = useFormContext();
-
-  const totalUnitsFormValue = methods.watch('totalUnits');
 
   useEffect(() => {
     onStepChange(currentStep);
@@ -50,61 +34,44 @@ export function Stepper({
 
   const handleStepChange = async () => {
     const isValidInput = await methods.trigger(pageFields?.[currentStep - 1]);
-    const collectiveUnitsOwned = propertyOwners?.reduce(
-      (acc: number, owner) => Number(acc) + Number(owner.units),
-      0
-    );
-    if (currentStep === 3) {
-      if (collectiveUnitsOwned !== Number(totalUnitsFormValue)) {
-        methods.setError('totalUnits', {
-          type: 'custom',
-          message: 'Total units should match the collective units owned',
-        });
-
-        return;
-      }
-    }
     if (isValidInput) {
       onStepChange(currentStep + 1);
     }
   };
 
   return (
-    <div className="stepper-parent">
-      <div className="stepper-header">
-        <div className="stepper-title flex items-center justify-start gap-3 px-4">
-          {currentStep === 1 && (
-            <Button variant="text" size="small" onClick={() => navigate(-1)}>
-              <HiChevronLeft
-                className="text-background-contrastText"
-                size={32}
-              />
-            </Button>
-          )}
-          {currentStep !== 1 && (
-            <Button
-              variant="text"
-              size="small"
-              onClick={() => onStepChange(currentStep - 1)}>
-              <HiChevronLeft
-                className="text-background-contrastText"
-                size={32}
-              />
-            </Button>
-          )}
-          <Typography variant="h2">{title}</Typography>
-        </div>
-        <div className="steps-container w-full px-12 py-4">
-          <div className="steps flex items-center justify-start">
+    <div className="stepper-parent lg:w-3/4">
+      <div className="stepper-title flex items-center justify-start gap-3">
+        <Button
+          variant="text"
+          size="small"
+          onClick={() => {
+            if (currentStep === 1) {
+              navigate(-1);
+            } else if (currentStep < totalSteps) {
+              onStepChange(currentStep - 1);
+            }
+          }}>
+          <HiChevronLeft className="text-background-contrastText" size={32} />
+        </Button>
+
+        <Typography variant="h3">{title}</Typography>
+      </div>
+
+      <div className="flex lg:flex-col">
+        <div className="steps-container py-2">
+          <div className="steps items flex flex-col items-center justify-center lg:flex-row lg:justify-start lg:px-12">
             {Array.from({ length: totalSteps }, (_, i) => i + 1).map((step) => {
               if (step < totalSteps) {
                 return (
-                  <div key={step} className="flex items-center justify-start">
+                  <div
+                    key={step}
+                    className="flex flex-col items-center justify-center lg:flex-row">
                     <Steps
                       color={step === currentStep ? 'primary' : 'secondary'}>
                       {step}
                     </Steps>
-                    <div className="step-line h-[1px] w-24 bg-primary-contrastText" />
+                    <div className="step-line h-24 w-[1px] bg-primary-contrastText lg:h-[1px] lg:w-24" />
                   </div>
                 );
               }
@@ -119,21 +86,23 @@ export function Stepper({
             })}
           </div>
         </div>
-      </div>
-      <div className="flex w-full flex-col items-center justify-between px-12 py-4">
-        <div className="flex w-full justify-between">{children}</div>
-        <div className="step-buttons flex w-full justify-end">
-          {currentStep < totalSteps && (
-            <Button size="extraLarge" onClick={handleStepChange}>
-              Next
-            </Button>
-          )}
-          {currentStep === totalSteps && (
-            <Button size="extraLarge" onClick={onStepsComplete}>
-              Submit
-            </Button>
-          )}
+
+        <div className="flex w-full flex-1 flex-col items-center justify-center py-4 lg:justify-between lg:px-12 lg:py-24">
+          <div className="flex w-full justify-between">{children}</div>
         </div>
+      </div>
+      <div className="step-buttons flex w-full justify-end">
+        <Button
+          size="large"
+          onClick={() => {
+            if (currentStep < totalSteps) {
+              handleStepChange();
+            } else if (currentStep === totalSteps) {
+              onStepsComplete();
+            }
+          }}>
+          {currentStep === totalSteps ? 'Submit' : 'Next'}
+        </Button>
       </div>
     </div>
   );

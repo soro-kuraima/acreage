@@ -93,7 +93,7 @@ export function TextInput({
   const classes = useMemo(
     () =>
       classNames(
-        'px-2 py-2 rounded shadow-sm focus:outline-none placeholder:text-zinc-400 bg-transparent placeholder:text-md text-md w-full text-background-contrastText border border-background-contrastText focus:border focus:border-primary-main ',
+        'px-2 py-2 rounded shadow-sm focus:outline-none placeholder:text-zinc-400 bg-transparent placeholder:text-md text-md w-full text-background-contrastText border border-background-contrastText focus:border focus:border-primary-main resize-none',
         className,
         {
           'opacity-60 cursor-not-allowed': disabled,

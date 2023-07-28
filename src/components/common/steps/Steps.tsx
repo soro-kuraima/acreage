@@ -12,7 +12,7 @@ export type ChipProps = {
 
 const sizeClasses: { [S in Size]: string } = {
   small: 'h-8 w-8 text-md',
-  medium: 'h-10 w-10 text-lg',
+  medium: 'h-6 w-6 text-md lg:h-10 lg:w-10 lg:text-lg',
   large: 'h-12 w-12 text-lg',
 };
 
