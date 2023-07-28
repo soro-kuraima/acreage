@@ -14,6 +14,19 @@
     "categories": {
       "auth": {
         "acreage20037f0e": {}
+      },
+      "geo": {
+        "addressmap": {},
+        "propertySearch": {}
+      },
+      "function": {
+        "S3Triggerb22af048": {
+          "deploymentBucketName": "amplify-acreage-dev-224027-deployment",
+          "s3Key": "amplify-builds/S3Triggerb22af048-4d797475386d75735150-build.zip"
+        }
+      },
+      "storage": {
+        "acreagestorage": {}
       }
     }
   }

@@ -36,7 +36,7 @@ const sizeClasses: { [S in Size]: string } = {
 const variantColorClasses: { [V in Variant]: Record<Color, string> } = {
   contained: {
     primary:
-      'bg-primary-main text-primary-contrastText hover:bg-primary-light active:bg-primary-main ',
+      'bg-primary-main text-primary-contrastText hover:bg-primary-dark active:bg-primary-main ',
     secondary:
       'bg-background-main text-background-contrastText hover:bg-background-light active:bg-background-main',
     error:

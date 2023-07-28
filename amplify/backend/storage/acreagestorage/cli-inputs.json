@@ -1,0 +1,10 @@
+{
+  "resourceName": "acreagestorage",
+  "policyUUID": "867efd21",
+  "bucketName": "acreagee26a8e6332584452baf7a3f970de91ba",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": ["CREATE_AND_UPDATE", "READ", "DELETE"],
+  "triggerFunction": "S3Triggerb22af048",
+  "groupAccess": {}
+}

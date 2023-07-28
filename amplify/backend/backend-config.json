@@ -18,5 +18,74 @@
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
     }
+  },
+  "function": {
+    "S3Triggerb22af048": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "geo": {
+    "addressmap": {
+      "accessType": "AuthorizedUsers",
+      "dependsOn": [
+        {
+          "attributes": ["UserPoolId"],
+          "category": "auth",
+          "resourceName": "acreage20037f0e"
+        }
+      ],
+      "isDefault": true,
+      "mapStyle": "VectorEsriNavigation",
+      "providerPlugin": "awscloudformation",
+      "service": "Map"
+    },
+    "propertySearch": {
+      "accessType": "AuthorizedUsers",
+      "dataProvider": "HERE",
+      "dataSourceIntendedUse": "SingleUse",
+      "dependsOn": [
+        {
+          "attributes": ["UserPoolId"],
+          "category": "auth",
+          "resourceName": "acreage20037f0e"
+        }
+      ],
+      "isDefault": true,
+      "providerPlugin": "awscloudformation",
+      "service": "PlaceIndex"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_S3Triggerb22af048_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "S3Triggerb22af048"
+        }
+      ]
+    },
+    "AMPLIFY_function_S3Triggerb22af048_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "S3Triggerb22af048"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "acreagestorage": {
+      "dependsOn": [
+        {
+          "attributes": ["Name", "Arn", "LambdaExecutionRole"],
+          "category": "function",
+          "resourceName": "S3Triggerb22af048"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
   }
 }

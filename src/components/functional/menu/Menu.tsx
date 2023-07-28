@@ -15,7 +15,7 @@ import avatar from 'assets/react.svg';
 
 export function Menu() {
   return (
-    <div className="bg-background-main">
+    <div className="min-h-screen bg-background-main">
       <div className="avatar-wrapper mb-24 mt-16 flex justify-center">
         <div className="avatar w-10 md:w-24">
           <img
@@ -38,7 +38,7 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-primary-main to-primary-light p-4 px-8 md:px-16">
                           <MdHome className="text-2xl text-gray-300" />
                           <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Market
@@ -61,7 +61,7 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-primary-main to-primary-light p-4 px-8 md:px-16">
                           <MdAddHome className="text-2xl text-gray-300" />
                           <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Create Property
@@ -84,7 +84,7 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-primary-main to-primary-light p-4 px-8 md:px-16">
                           <MdViewList className="text-2xl text-gray-300" />
                           <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Properties
@@ -107,7 +107,7 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-primary-main to-primary-light p-4 px-8 md:px-16">
                           <MdBarChart className="text-2xl text-gray-300" />
                           <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             My Investments
@@ -130,7 +130,7 @@ export function Menu() {
                   {({ isActive }) => (
                     <>
                       {isActive ? (
-                        <div className="link flex items-center gap-4 bg-gradient-to-r from-indigo-400 to-indigo-700 p-4 px-8 md:px-16">
+                        <div className="link flex items-center gap-4 bg-gradient-to-r from-primary-main to-primary-light p-4 px-8 md:px-16">
                           <MdManageAccounts className="text-2xl text-gray-300" />
                           <span className="hidden text-2xl font-semibold text-gray-300 lg:block">
                             Account
