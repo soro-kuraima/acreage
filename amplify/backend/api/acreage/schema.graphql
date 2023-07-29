@@ -1,0 +1,47 @@
+type Shareholder {
+  userID: String!
+  ownership: Float!
+}
+
+enum DIRECTION {
+  NORTH
+  SOUTH
+  EAST
+  WEST
+  NORTH_EAST
+  SOUTH_EAST
+  SOUTH_WEST
+  NORTH_WEST
+}
+
+enum SALESTYPE {
+  NEW
+  RESALE
+}
+
+enum PROPERTYTYPE {
+  APARTMENT
+  PLOT
+  VILLA
+  COMMERCIAL
+  AGRICULTURAL
+}
+
+type Properties @model @auth(rules: [{ allow: public }]) {
+  id: ID!
+  title: String!
+  noOfBhk: Int
+  price: Float!
+  builtUpArea: Float!
+  description: String!
+  address: String!
+  pincode: Int!
+  city: String!
+  state: String!
+  ageOfProperty: Float!
+  propertyType: PROPERTYTYPE!
+  salesType: SALESTYPE!
+  facing: DIRECTION!
+  propertyImages: [String]!
+  shareHolders: [Shareholder!]!
+}

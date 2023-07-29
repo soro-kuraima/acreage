@@ -14,6 +14,7 @@ type StepperProps = {
   onStepsComplete: () => void;
   title: string;
   pageFields: string[][];
+  disableSubmit?: boolean;
 };
 
 export function Stepper({
@@ -24,6 +25,7 @@ export function Stepper({
   onStepsComplete,
   title,
   pageFields,
+  disableSubmit = false,
 }: StepperProps) {
   const navigate = useNavigate();
   const methods = useFormContext();
@@ -48,7 +50,7 @@ export function Stepper({
           onClick={() => {
             if (currentStep === 1) {
               navigate(-1);
-            } else if (currentStep < totalSteps) {
+            } else if (currentStep <= totalSteps) {
               onStepChange(currentStep - 1);
             }
           }}>
@@ -93,6 +95,7 @@ export function Stepper({
       </div>
       <div className="step-buttons flex w-full justify-end">
         <Button
+          disabled={disableSubmit}
           size="large"
           onClick={() => {
             if (currentStep < totalSteps) {

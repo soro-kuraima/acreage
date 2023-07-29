@@ -27,6 +27,7 @@ export function LocationDetails<PropertyType extends FieldValues>({
           <TextInput
             name="pincode"
             type="number"
+            control={control}
             placeholder="Enter Pincode"
             className="bg-transparent"
             fullWidth
@@ -42,6 +43,7 @@ export function LocationDetails<PropertyType extends FieldValues>({
           <TextInput
             name="state"
             type="text"
+            control={control}
             placeholder="Enter State"
             className="bg-transparent"
             fullWidth

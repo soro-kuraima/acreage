@@ -23,8 +23,8 @@ type RadioButtonProps = {
   className?: string;
   helperText?: string;
   label?: string;
-  options?: string[];
-  onChange?: (value: number) => void;
+  options?: { value: string; label: string }[];
+  onChange?: (value: string) => void;
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;
@@ -109,25 +109,25 @@ export function RadioInput({
         <div className="px-2 py-2">
           {options?.map((option) => (
             <label
-              key={option}
-              htmlFor={option}
+              key={option.value}
+              htmlFor={option.value}
               className="flex items-center space-x-2 px-1 py-1">
               <input
                 type="radio"
-                id={option}
+                id={option.value}
                 name={name}
                 className={`${classes}`}
-                value={option}
+                value={option.value}
                 onChange={
                   control
                     ? controlChange
                     : (e) => {
-                        onChange?.(Number(e.target.value));
+                        onChange?.(e.target.value);
                       }
                 }
-                checked={formValue === option}
+                checked={formValue === option.value}
               />
-              <Typography variant="subtitle1">{option}</Typography>
+              <Typography variant="subtitle1">{option.label}</Typography>
             </label>
           ))}
         </div>

@@ -42,6 +42,7 @@ export function BasicDetails<PropertyType extends FieldValues>({
           <TextInput
             name="builtUpArea"
             type="number"
+            control={control}
             placeholder="Built up area in sq. m"
             className="bg-transparent"
             fullWidth

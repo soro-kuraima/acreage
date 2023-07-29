@@ -1,13 +1,18 @@
-export type PropertyType = {
+import { Direction, Propertytype, Salestype } from 'models';
+
+export type Property = {
   title: string;
   noOfBhk: number;
   price: number;
   builtUpArea: number;
   description: string;
   address: string;
-  ageOfProperty: string;
-  propertyType: string;
-  salesType: string;
-  facing: string;
+  pincode: number;
+  city: string;
+  state: string;
+  ageOfProperty: number;
+  propertyType: Propertytype;
+  salesType: Salestype;
+  facing: Direction;
   amenities: string[];
 };
