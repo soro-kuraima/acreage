@@ -1,4 +1,11 @@
 export type AmplifyDependentResourcesAttributes = {
+  api: {
+    acreage: {
+      GraphQLAPIEndpointOutput: 'string';
+      GraphQLAPIIdOutput: 'string';
+      GraphQLAPIKeyOutput: 'string';
+    };
+  };
   auth: {
     acreage20037f0e: {
       AppClientID: 'string';

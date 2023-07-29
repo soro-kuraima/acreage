@@ -4,6 +4,7 @@ import { Card } from '@aws-amplify/ui-react';
 import { Control, FieldValues } from 'react-hook-form';
 
 import { RadioInput } from 'components/common';
+import { Direction } from 'models';
 
 interface FacingProps<PropertyType extends FieldValues> {
   control: Control<PropertyType>;
@@ -23,14 +24,14 @@ export function Facing<PropertyType extends FieldValues>({
             fullWidth
             label="Select the Direction"
             options={[
-              'North',
-              'South',
-              'East',
-              'West',
-              'North-East',
-              'South-East',
-              'South-West',
-              'North-West',
+              { value: Direction.NORTH, label: 'North' },
+              { value: Direction.SOUTH, label: 'South' },
+              { value: Direction.EAST, label: 'East' },
+              { value: Direction.WEST, label: 'West' },
+              { value: Direction.NORTH_EAST, label: 'North East' },
+              { value: Direction.NORTH_WEST, label: 'North West' },
+              { value: Direction.SOUTH_EAST, label: 'South East' },
+              { value: Direction.SOUTH_WEST, label: 'South West' },
             ]}
           />
         </div>

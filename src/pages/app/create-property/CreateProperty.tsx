@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 
+import { useAuthenticator } from '@aws-amplify/ui-react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Storage } from 'aws-amplify';
 import { useForm, FormProvider } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 import { Stepper } from 'components/functional';
 import { BasicDetails } from 'components/property/BasicDetails';
@@ -11,17 +14,27 @@ import { LocationDetails } from 'components/property/LocationDetails';
 import { PropertyImages } from 'components/property/PropertyImages';
 import { Review } from 'components/property/Review';
 import { createPropertySchema } from 'constants/validation-schema';
+import { useAmplifyMutation } from 'hooks/useAmplifyMutation';
+import { PropertyService } from 'services/properties/property';
 
 const totalSteps = 5;
 
 export function CreateProperty() {
-  const [currentStep, setCurrentStep] = React.useState(5);
+  const [currentStep, setCurrentStep] = React.useState(1);
+  const [propertyImages, setPropertyImages] = useState<File[]>([]);
+  const [disableSumbit, setDisableSubmit] = useState(false);
+
+  const { user } = useAuthenticator();
 
   const methods = useForm({ resolver: yupResolver(createPropertySchema) });
 
-  const { control } = methods;
+  const createPropertyMutation = useAmplifyMutation(
+    PropertyService.createProperty,
+    {}
+  );
 
-  const onSubmit = () => null;
+  const { control, handleSubmit } = methods;
+
   const pageFields = [
     ['title', 'noOfBhk', 'price', 'builtUpArea', 'description'],
     ['propertyAddress'],
@@ -29,7 +42,36 @@ export function CreateProperty() {
     ['facing'],
   ];
 
-  const [propertyImages, setPropertyImages] = useState<File[]>([]);
+  const onSubmit = handleSubmit(async (data) => {
+    setDisableSubmit(true);
+    try {
+      const keys = await Promise.all(
+        propertyImages.map(async (image) => {
+          const fileName = `${Date.now()}-${image.name}`;
+          const result = await Storage.put(fileName, image, {
+            contentType: image.type,
+          });
+
+          return result.key;
+        })
+      );
+      try {
+        await createPropertyMutation.mutateAsync({
+          data,
+          propertyImages: keys,
+          userID: user.getUsername(),
+        });
+        toast.success('Property created successfully!');
+        setCurrentStep(6);
+      } catch (error) {
+        toast.error('Error in creating property! Try again');
+        setDisableSubmit(false);
+      }
+    } catch (error) {
+      toast.error('Error in uploading images! Try again');
+      setDisableSubmit(false);
+    }
+  });
 
   return (
     <div className="create-property mx-0">
@@ -43,6 +85,7 @@ export function CreateProperty() {
                 pageFields={pageFields}
                 onStepChange={setCurrentStep}
                 onStepsComplete={onSubmit}
+                disableSubmit={disableSumbit}
                 title="Create a new property">
                 <div className="step w-full">
                   {currentStep === 1 && <BasicDetails control={control} />}
@@ -58,7 +101,7 @@ export function CreateProperty() {
                 </div>
               </Stepper>
             )}{' '}
-            {currentStep === 5 && <Review />}
+            {currentStep === 6 && <Review onClick={() => setCurrentStep(1)} />}
           </form>
         </FormProvider>
       </div>

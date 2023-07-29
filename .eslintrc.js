@@ -129,6 +129,7 @@ module.exports = {
     'babel.config.js',
     'build',
     '/src/ui-components/**',
-    '/amplify',
+    '/amplify/**',
+    '/src/models/**',
   ],
 };
