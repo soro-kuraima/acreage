@@ -1,5 +1,73 @@
 export const schema = {
   models: {
+    UserProperties: {
+      name: 'UserProperties',
+      fields: {
+        id: {
+          name: 'id',
+          isArray: false,
+          type: 'ID',
+          isRequired: true,
+          attributes: [],
+        },
+        UserProperties: {
+          name: 'UserProperties',
+          isArray: true,
+          type: {
+            model: 'UserPropertiesProperties',
+          },
+          isRequired: false,
+          attributes: [],
+          isArrayNullable: true,
+          association: {
+            connectionType: 'HAS_MANY',
+            associatedWith: ['userProperties'],
+          },
+        },
+        createdAt: {
+          name: 'createdAt',
+          isArray: false,
+          type: 'AWSDateTime',
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+        updatedAt: {
+          name: 'updatedAt',
+          isArray: false,
+          type: 'AWSDateTime',
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+      },
+      syncable: true,
+      pluralName: 'UserProperties',
+      attributes: [
+        {
+          type: 'model',
+          properties: {},
+        },
+        {
+          type: 'auth',
+          properties: {
+            rules: [
+              {
+                allow: 'public',
+                operations: ['create', 'update', 'delete', 'read'],
+              },
+              {
+                groupClaim: 'cognito:groups',
+                provider: 'userPools',
+                allow: 'groups',
+                groups: ['owners'],
+                operations: ['read', 'create', 'update', 'delete'],
+              },
+            ],
+          },
+        },
+      ],
+    },
     Properties: {
       name: 'Properties',
       fields: {
@@ -125,6 +193,20 @@ export const schema = {
           attributes: [],
           isArrayNullable: false,
         },
+        userpropertiess: {
+          name: 'userpropertiess',
+          isArray: true,
+          type: {
+            model: 'UserPropertiesProperties',
+          },
+          isRequired: false,
+          attributes: [],
+          isArrayNullable: true,
+          association: {
+            connectionType: 'HAS_MANY',
+            associatedWith: ['properties'],
+          },
+        },
         createdAt: {
           name: 'createdAt',
           isArray: false,
@@ -158,6 +240,96 @@ export const schema = {
                 operations: ['create', 'update', 'delete', 'read'],
               },
             ],
+          },
+        },
+      ],
+    },
+    UserPropertiesProperties: {
+      name: 'UserPropertiesProperties',
+      fields: {
+        id: {
+          name: 'id',
+          isArray: false,
+          type: 'ID',
+          isRequired: true,
+          attributes: [],
+        },
+        userPropertiesId: {
+          name: 'userPropertiesId',
+          isArray: false,
+          type: 'ID',
+          isRequired: false,
+          attributes: [],
+        },
+        propertiesId: {
+          name: 'propertiesId',
+          isArray: false,
+          type: 'ID',
+          isRequired: false,
+          attributes: [],
+        },
+        userProperties: {
+          name: 'userProperties',
+          isArray: false,
+          type: {
+            model: 'UserProperties',
+          },
+          isRequired: true,
+          attributes: [],
+          association: {
+            connectionType: 'BELONGS_TO',
+            targetNames: ['userPropertiesId'],
+          },
+        },
+        properties: {
+          name: 'properties',
+          isArray: false,
+          type: {
+            model: 'Properties',
+          },
+          isRequired: true,
+          attributes: [],
+          association: {
+            connectionType: 'BELONGS_TO',
+            targetNames: ['propertiesId'],
+          },
+        },
+        createdAt: {
+          name: 'createdAt',
+          isArray: false,
+          type: 'AWSDateTime',
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+        updatedAt: {
+          name: 'updatedAt',
+          isArray: false,
+          type: 'AWSDateTime',
+          isRequired: false,
+          attributes: [],
+          isReadOnly: true,
+        },
+      },
+      syncable: true,
+      pluralName: 'UserPropertiesProperties',
+      attributes: [
+        {
+          type: 'model',
+          properties: {},
+        },
+        {
+          type: 'key',
+          properties: {
+            name: 'byUserProperties',
+            fields: ['userPropertiesId'],
+          },
+        },
+        {
+          type: 'key',
+          properties: {
+            name: 'byProperties',
+            fields: ['propertiesId'],
           },
         },
       ],
@@ -208,5 +380,5 @@ export const schema = {
     },
   },
   codegenVersion: '3.4.4',
-  version: '0c3ec0416e82f4ec578cb42bc0637cb0',
+  version: '9c0d5f21b6a96959f9028d135db43547',
 };

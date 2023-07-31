@@ -1,3 +1,20 @@
+type UserProperties
+  @model
+  @auth(
+    rules: [
+      { allow: public }
+      {
+        allow: groups
+        groups: ["owners"]
+        operations: [read, create, update, delete]
+      }
+    ]
+  ) {
+  id: ID!
+  UserProperties: [Properties]
+    @manyToMany(relationName: "UserPropertiesProperties")
+}
+
 type Shareholder {
   userID: String!
   ownership: Float!
@@ -44,4 +61,6 @@ type Properties @model @auth(rules: [{ allow: public }]) {
   facing: DIRECTION!
   propertyImages: [String]!
   shareHolders: [Shareholder!]!
+  userpropertiess: [UserProperties]
+    @manyToMany(relationName: "UserPropertiesProperties")
 }

@@ -7,6 +7,7 @@
 /* eslint-disable */
 import * as React from 'react';
 import {
+  Autocomplete,
   Badge,
   Button,
   Divider,
@@ -20,8 +21,15 @@ import {
   TextField,
   useTheme,
 } from '@aws-amplify/ui-react';
-import { getOverrideProps } from '@aws-amplify/ui-react/internal';
-import { Properties } from '../models';
+import {
+  getOverrideProps,
+  useDataStoreBinding,
+} from '@aws-amplify/ui-react/internal';
+import {
+  Properties,
+  UserProperties,
+  UserPropertiesProperties,
+} from '../models';
 import { fetchByPath, validateField } from './utils';
 import { DataStore } from 'aws-amplify';
 function ArrayField({
@@ -205,6 +213,7 @@ export default function PropertiesCreateForm(props) {
     facing: '',
     propertyImages: [],
     shareHolders: [],
+    userpropertiess: [],
   };
   const [title, setTitle] = React.useState(initialValues.title);
   const [noOfBhk, setNoOfBhk] = React.useState(initialValues.noOfBhk);
@@ -233,6 +242,9 @@ export default function PropertiesCreateForm(props) {
   const [shareHolders, setShareHolders] = React.useState(
     initialValues.shareHolders
   );
+  const [userpropertiess, setUserpropertiess] = React.useState(
+    initialValues.userpropertiess
+  );
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setTitle(initialValues.title);
@@ -252,6 +264,9 @@ export default function PropertiesCreateForm(props) {
     setCurrentPropertyImagesValue('');
     setShareHolders(initialValues.shareHolders);
     setCurrentShareHoldersValue('');
+    setUserpropertiess(initialValues.userpropertiess);
+    setCurrentUserpropertiessValue(undefined);
+    setCurrentUserpropertiessDisplayValue('');
     setErrors({});
   };
   const [currentPropertyImagesValue, setCurrentPropertyImagesValue] =
@@ -260,6 +275,28 @@ export default function PropertiesCreateForm(props) {
   const [currentShareHoldersValue, setCurrentShareHoldersValue] =
     React.useState('');
   const shareHoldersRef = React.createRef();
+  const [
+    currentUserpropertiessDisplayValue,
+    setCurrentUserpropertiessDisplayValue,
+  ] = React.useState('');
+  const [currentUserpropertiessValue, setCurrentUserpropertiessValue] =
+    React.useState(undefined);
+  const userpropertiessRef = React.createRef();
+  const getIDValue = {
+    userpropertiess: (r) => JSON.stringify({ id: r?.id }),
+  };
+  const userpropertiessIdSet = new Set(
+    Array.isArray(userpropertiess)
+      ? userpropertiess.map((r) => getIDValue.userpropertiess?.(r))
+      : getIDValue.userpropertiess?.(userpropertiess)
+  );
+  const userPropertiesRecords = useDataStoreBinding({
+    type: 'collection',
+    model: UserProperties,
+  }).items;
+  const getDisplayValue = {
+    userpropertiess: (r) => r?.id,
+  };
   const validations = {
     title: [{ type: 'Required' }],
     noOfBhk: [],
@@ -276,6 +313,7 @@ export default function PropertiesCreateForm(props) {
     facing: [{ type: 'Required' }],
     propertyImages: [],
     shareHolders: [{ type: 'Required' }, { type: 'JSON' }],
+    userpropertiess: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -318,19 +356,28 @@ export default function PropertiesCreateForm(props) {
           facing,
           propertyImages,
           shareHolders,
+          userpropertiess,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
               promises.push(
                 ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
+                  runValidationTasks(
+                    fieldName,
+                    item,
+                    getDisplayValue[fieldName]
+                  )
                 )
               );
               return promises;
             }
             promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
+              runValidationTasks(
+                fieldName,
+                modelFields[fieldName],
+                getDisplayValue[fieldName]
+              )
             );
             return promises;
           }, [])
@@ -364,7 +411,24 @@ export default function PropertiesCreateForm(props) {
             propertyImages: modelFields.propertyImages,
             shareHolders: modelFields.shareHolders.map((s) => JSON.parse(s)),
           };
-          await DataStore.save(new Properties(modelFieldsToSave));
+          const properties = await DataStore.save(
+            new Properties(modelFieldsToSave)
+          );
+          const promises = [];
+          promises.push(
+            ...userpropertiess.reduce((promises, userProperties) => {
+              promises.push(
+                DataStore.save(
+                  new UserPropertiesProperties({
+                    properties,
+                    userProperties,
+                  })
+                )
+              );
+              return promises;
+            }, [])
+          );
+          await Promise.all(promises);
           if (onSuccess) {
             onSuccess(modelFields);
           }
@@ -403,6 +467,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.title ?? value;
@@ -444,6 +509,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.noOfBhk ?? value;
@@ -485,6 +551,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.price ?? value;
@@ -526,6 +593,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.builtUpArea ?? value;
@@ -563,6 +631,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.description ?? value;
@@ -600,6 +669,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.address ?? value;
@@ -641,6 +711,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.pincode ?? value;
@@ -678,6 +749,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.city ?? value;
@@ -715,6 +787,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.state ?? value;
@@ -756,6 +829,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.ageOfProperty ?? value;
@@ -793,6 +867,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.propertyType ?? value;
@@ -851,6 +926,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.salesType ?? value;
@@ -897,6 +973,7 @@ export default function PropertiesCreateForm(props) {
               facing: value,
               propertyImages,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             value = result?.facing ?? value;
@@ -963,6 +1040,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages: values,
               shareHolders,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             values = result?.propertyImages ?? values;
@@ -1019,6 +1097,7 @@ export default function PropertiesCreateForm(props) {
               facing,
               propertyImages,
               shareHolders: values,
+              userpropertiess,
             };
             const result = onChange(modelFields);
             values = result?.shareHolders ?? values;
@@ -1054,6 +1133,97 @@ export default function PropertiesCreateForm(props) {
           ref={shareHoldersRef}
           labelHidden={true}
           {...getOverrideProps(overrides, 'shareHolders')}></TextAreaField>
+      </ArrayField>
+      <ArrayField
+        onChange={async (items) => {
+          let values = items;
+          if (onChange) {
+            const modelFields = {
+              title,
+              noOfBhk,
+              price,
+              builtUpArea,
+              description,
+              address,
+              pincode,
+              city,
+              state,
+              ageOfProperty,
+              propertyType,
+              salesType,
+              facing,
+              propertyImages,
+              shareHolders,
+              userpropertiess: values,
+            };
+            const result = onChange(modelFields);
+            values = result?.userpropertiess ?? values;
+          }
+          setUserpropertiess(values);
+          setCurrentUserpropertiessValue(undefined);
+          setCurrentUserpropertiessDisplayValue('');
+        }}
+        currentFieldValue={currentUserpropertiessValue}
+        label={'Userpropertiess'}
+        items={userpropertiess}
+        hasError={errors?.userpropertiess?.hasError}
+        errorMessage={errors?.userpropertiess?.errorMessage}
+        getBadgeText={getDisplayValue.userpropertiess}
+        setFieldValue={(model) => {
+          setCurrentUserpropertiessDisplayValue(
+            model ? getDisplayValue.userpropertiess(model) : ''
+          );
+          setCurrentUserpropertiessValue(model);
+        }}
+        inputFieldRef={userpropertiessRef}
+        defaultFieldValue={''}>
+        <Autocomplete
+          label="Userpropertiess"
+          isRequired={false}
+          isReadOnly={false}
+          placeholder="Search UserProperties"
+          value={currentUserpropertiessDisplayValue}
+          options={userPropertiesRecords
+            .filter(
+              (r) => !userpropertiessIdSet.has(getIDValue.userpropertiess?.(r))
+            )
+            .map((r) => ({
+              id: getIDValue.userpropertiess?.(r),
+              label: getDisplayValue.userpropertiess?.(r),
+            }))}
+          onSelect={({ id, label }) => {
+            setCurrentUserpropertiessValue(
+              userPropertiesRecords.find((r) =>
+                Object.entries(JSON.parse(id)).every(
+                  ([key, value]) => r[key] === value
+                )
+              )
+            );
+            setCurrentUserpropertiessDisplayValue(label);
+            runValidationTasks('userpropertiess', label);
+          }}
+          onClear={() => {
+            setCurrentUserpropertiessDisplayValue('');
+          }}
+          onChange={(e) => {
+            let { value } = e.target;
+            if (errors.userpropertiess?.hasError) {
+              runValidationTasks('userpropertiess', value);
+            }
+            setCurrentUserpropertiessDisplayValue(value);
+            setCurrentUserpropertiessValue(undefined);
+          }}
+          onBlur={() =>
+            runValidationTasks(
+              'userpropertiess',
+              currentUserpropertiessDisplayValue
+            )
+          }
+          errorMessage={errors.userpropertiess?.errorMessage}
+          hasError={errors.userpropertiess?.hasError}
+          ref={userpropertiessRef}
+          labelHidden={true}
+          {...getOverrideProps(overrides, 'userpropertiess')}></Autocomplete>
       </ArrayField>
       <Flex
         justifyContent="space-between"

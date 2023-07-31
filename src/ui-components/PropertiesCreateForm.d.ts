@@ -6,12 +6,14 @@
 
 import * as React from 'react';
 import {
+  AutocompleteProps,
   GridProps,
   SelectFieldProps,
   TextAreaFieldProps,
   TextFieldProps,
 } from '@aws-amplify/ui-react';
 import { EscapeHatchProps } from '@aws-amplify/ui-react/internal';
+import { UserProperties } from '../models';
 export declare type ValidationResponse = {
   hasError: boolean;
   errorMessage?: string;
@@ -36,6 +38,7 @@ export declare type PropertiesCreateFormInputValues = {
   facing?: string;
   propertyImages?: string[];
   shareHolders?: string[];
+  userpropertiess?: UserProperties[];
 };
 export declare type PropertiesCreateFormValidationValues = {
   title?: ValidationFunction<string>;
@@ -53,6 +56,7 @@ export declare type PropertiesCreateFormValidationValues = {
   facing?: ValidationFunction<string>;
   propertyImages?: ValidationFunction<string>;
   shareHolders?: ValidationFunction<string>;
+  userpropertiess?: ValidationFunction<UserProperties>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> &
   React.DOMAttributes<HTMLDivElement>;
@@ -73,6 +77,7 @@ export declare type PropertiesCreateFormOverridesProps = {
   facing?: PrimitiveOverrideProps<SelectFieldProps>;
   propertyImages?: PrimitiveOverrideProps<TextFieldProps>;
   shareHolders?: PrimitiveOverrideProps<TextAreaFieldProps>;
+  userpropertiess?: PrimitiveOverrideProps<AutocompleteProps>;
 } & EscapeHatchProps;
 export declare type PropertiesCreateFormProps = React.PropsWithChildren<
   {
