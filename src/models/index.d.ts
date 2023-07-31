@@ -5,12 +5,7 @@ import {
   ManagedIdentifier,
 } from '@aws-amplify/datastore';
 // @ts-ignore
-import {
-  LazyLoading,
-  LazyLoadingDisabled,
-  AsyncCollection,
-  AsyncItem,
-} from '@aws-amplify/datastore';
+import { LazyLoading, LazyLoadingDisabled } from '@aws-amplify/datastore';
 
 export enum Direction {
   NORTH = 'NORTH',
@@ -36,6 +31,24 @@ export enum Propertytype {
   AGRICULTURAL = 'AGRICULTURAL',
 }
 
+type EagerPropertyshare = {
+  readonly propertyId?: string | null;
+  readonly ownership?: number | null;
+};
+
+type LazyPropertyshare = {
+  readonly propertyId?: string | null;
+  readonly ownership?: number | null;
+};
+
+export declare type Propertyshare = LazyLoading extends LazyLoadingDisabled
+  ? EagerPropertyshare
+  : LazyPropertyshare;
+
+export declare const Propertyshare: new (
+  init: ModelInit<Propertyshare>
+) => Propertyshare;
+
 type EagerShareholder = {
   readonly userID: string;
   readonly ownership: number;
@@ -54,41 +67,47 @@ export declare const Shareholder: new (
   init: ModelInit<Shareholder>
 ) => Shareholder;
 
-type EagerUserProperties = {
+type EagerUsers = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserProperties, 'id'>;
+    identifier: ManagedIdentifier<Users, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly UserProperties?: (UserPropertiesProperties | null)[] | null;
+  readonly firstName?: string | null;
+  readonly lastName?: string | null;
+  readonly profession?: string | null;
+  readonly about?: string | null;
+  readonly profilePicture?: string | null;
+  readonly properties?: Propertyshare | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
 
-type LazyUserProperties = {
+type LazyUsers = {
   readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserProperties, 'id'>;
+    identifier: ManagedIdentifier<Users, 'id'>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly id: string;
-  readonly UserProperties: AsyncCollection<UserPropertiesProperties>;
+  readonly firstName?: string | null;
+  readonly lastName?: string | null;
+  readonly profession?: string | null;
+  readonly about?: string | null;
+  readonly profilePicture?: string | null;
+  readonly properties?: Propertyshare | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
 
-export declare type UserProperties = LazyLoading extends LazyLoadingDisabled
-  ? EagerUserProperties
-  : LazyUserProperties;
+export declare type Users = LazyLoading extends LazyLoadingDisabled
+  ? EagerUsers
+  : LazyUsers;
 
-export declare const UserProperties: (new (
-  init: ModelInit<UserProperties>
-) => UserProperties) & {
+export declare const Users: (new (init: ModelInit<Users>) => Users) & {
   copyOf(
-    source: UserProperties,
-    mutator: (
-      draft: MutableModel<UserProperties>
-    ) => MutableModel<UserProperties> | void
-  ): UserProperties;
+    source: Users,
+    mutator: (draft: MutableModel<Users>) => MutableModel<Users> | void
+  ): Users;
 };
 
 type EagerProperties = {
@@ -112,7 +131,6 @@ type EagerProperties = {
   readonly facing: Direction | keyof typeof Direction;
   readonly propertyImages: (string | null)[];
   readonly shareHolders: Shareholder[];
-  readonly userpropertiess?: (UserPropertiesProperties | null)[] | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -138,7 +156,6 @@ type LazyProperties = {
   readonly facing: Direction | keyof typeof Direction;
   readonly propertyImages: (string | null)[];
   readonly shareHolders: Shareholder[];
-  readonly userpropertiess: AsyncCollection<UserPropertiesProperties>;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 };
@@ -156,48 +173,4 @@ export declare const Properties: (new (
       draft: MutableModel<Properties>
     ) => MutableModel<Properties> | void
   ): Properties;
-};
-
-type EagerUserPropertiesProperties = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserPropertiesProperties, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly userPropertiesId?: string | null;
-  readonly propertiesId?: string | null;
-  readonly userProperties: UserProperties;
-  readonly properties: Properties;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-};
-
-type LazyUserPropertiesProperties = {
-  readonly [__modelMeta__]: {
-    identifier: ManagedIdentifier<UserPropertiesProperties, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
-  };
-  readonly id: string;
-  readonly userPropertiesId?: string | null;
-  readonly propertiesId?: string | null;
-  readonly userProperties: AsyncItem<UserProperties>;
-  readonly properties: AsyncItem<Properties>;
-  readonly createdAt?: string | null;
-  readonly updatedAt?: string | null;
-};
-
-export declare type UserPropertiesProperties =
-  LazyLoading extends LazyLoadingDisabled
-    ? EagerUserPropertiesProperties
-    : LazyUserPropertiesProperties;
-
-export declare const UserPropertiesProperties: (new (
-  init: ModelInit<UserPropertiesProperties>
-) => UserPropertiesProperties) & {
-  copyOf(
-    source: UserPropertiesProperties,
-    mutator: (
-      draft: MutableModel<UserPropertiesProperties>
-    ) => MutableModel<UserPropertiesProperties> | void
-  ): UserPropertiesProperties;
 };

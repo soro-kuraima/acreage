@@ -26,15 +26,14 @@ const Propertytype = {
   AGRICULTURAL: 'AGRICULTURAL',
 };
 
-const { UserProperties, Properties, UserPropertiesProperties, Shareholder } =
-  initSchema(schema);
+const { Users, Properties, Propertyshare, Shareholder } = initSchema(schema);
 
 export {
-  UserProperties,
+  Users,
   Properties,
-  UserPropertiesProperties,
   Direction,
   Salestype,
   Propertytype,
+  Propertyshare,
   Shareholder,
 };

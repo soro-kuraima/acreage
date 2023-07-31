@@ -1,3 +1,4 @@
+import { ScrollView } from '@aws-amplify/ui-react';
 import { Outlet } from 'react-router-dom';
 
 import { RequireAuth, Menu } from 'components/functional';
@@ -12,7 +13,9 @@ export function AppLayout() {
         <div className="flex-start flex overflow-hidden">
           <Menu />
           <div className="container">
-            <Outlet />
+            <ScrollView height="90vh">
+              <Outlet />
+            </ScrollView>
           </div>
         </div>
       </div>

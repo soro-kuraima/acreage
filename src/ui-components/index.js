@@ -13,6 +13,6 @@ export { default as Profile } from './Profile';
 export { default as PropertiesCreateForm } from './PropertiesCreateForm';
 export { default as PropertiesUpdateForm } from './PropertiesUpdateForm';
 export { default as SideNavigation } from './SideNavigation';
-export { default as UserPropertiesCreateForm } from './UserPropertiesCreateForm';
-export { default as UserPropertiesUpdateForm } from './UserPropertiesUpdateForm';
+export { default as UsersCreateForm } from './UsersCreateForm';
+export { default as UsersUpdateForm } from './UsersUpdateForm';
 export { default as studioTheme } from './studioTheme';

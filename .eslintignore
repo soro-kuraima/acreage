@@ -7,6 +7,6 @@ ios/
 .env
 eslint/
 .eslintrc.js
-src/models
-src/ui-components
-amplify
+src/models/
+src/ui-components/
+amplify/
