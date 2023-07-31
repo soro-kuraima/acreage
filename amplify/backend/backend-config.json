@@ -1,12 +1,24 @@
 {
   "api": {
     "acreage": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": ["UserPoolId"],
+          "category": "auth",
+          "resourceName": "acreage20037f0e"
+        }
+      ],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [
             {
               "authenticationType": "AWS_IAM"
+            },
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authacreage20037f0e"
+              }
             }
           ],
           "defaultAuthentication": {

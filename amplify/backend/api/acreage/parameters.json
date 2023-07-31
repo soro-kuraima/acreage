@@ -1,5 +1,9 @@
 {
   "AppSyncApiName": "acreage",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": ["authacreage20037f0e", "Outputs.UserPoolId"]
+  },
+  "AuthModeLastUpdated": "2023-07-31T15:44:19.761Z"
 }
