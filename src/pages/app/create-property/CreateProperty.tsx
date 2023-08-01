@@ -44,6 +44,7 @@ export function CreateProperty() {
 
   const onSubmit = handleSubmit(async (data) => {
     setDisableSubmit(true);
+
     try {
       const keys = await Promise.all(
         propertyImages.map(async (image) => {
@@ -61,6 +62,9 @@ export function CreateProperty() {
           propertyImages: keys,
           userID: user.getUsername(),
         });
+        methods.reset();
+        setPropertyImages([]);
+        setDisableSubmit(false);
         toast.success('Property created successfully!');
         setCurrentStep(6);
       } catch (error) {

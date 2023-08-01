@@ -1,0 +1,18 @@
+projects:
+  acreage:
+    schemaPath: amplify/backend/api/acreage/build/schema.graphql
+    includes:
+      - src/graphql/**/*
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: PropertiesGraphQLApi.ts
+        docsFilePath: src/graphql
+        region: us-east-1
+        apiId: null
+        maxDepth: 2
+extensions:
+  amplify:
+    version: 3

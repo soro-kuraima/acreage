@@ -1,18 +1,16 @@
-type UserProperties
-  @model
-  @auth(
-    rules: [
-      { allow: public }
-      {
-        allow: groups
-        groups: ["owners"]
-        operations: [read, create, update, delete]
-      }
-    ]
-  ) {
+type Propertyshare {
+  propertyId: String
+  ownership: Float
+}
+
+type Users @model @auth(rules: [{ allow: public }]) {
   id: ID!
-  UserProperties: [Properties]
-    @manyToMany(relationName: "UserPropertiesProperties")
+  firstName: String
+  lastName: String
+  profession: String
+  about: String
+  profilePicture: String
+  properties: Propertyshare
 }
 
 type Shareholder {
@@ -61,6 +59,4 @@ type Properties @model @auth(rules: [{ allow: public }]) {
   facing: DIRECTION!
   propertyImages: [String]!
   shareHolders: [Shareholder!]!
-  userpropertiess: [UserProperties]
-    @manyToMany(relationName: "UserPropertiesProperties")
 }

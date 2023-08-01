@@ -57,7 +57,7 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: 'property/:id',
+        path: 'market/property/:id',
         element: (
           <Page title="Property">
             <Property />

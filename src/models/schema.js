@@ -1,7 +1,7 @@
 export const schema = {
   models: {
-    UserProperties: {
-      name: 'UserProperties',
+    Users: {
+      name: 'Users',
       fields: {
         id: {
           name: 'id',
@@ -10,19 +10,49 @@ export const schema = {
           isRequired: true,
           attributes: [],
         },
-        UserProperties: {
-          name: 'UserProperties',
-          isArray: true,
+        firstName: {
+          name: 'firstName',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        lastName: {
+          name: 'lastName',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        profession: {
+          name: 'profession',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        about: {
+          name: 'about',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        profilePicture: {
+          name: 'profilePicture',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        properties: {
+          name: 'properties',
+          isArray: false,
           type: {
-            model: 'UserPropertiesProperties',
+            nonModel: 'Propertyshare',
           },
           isRequired: false,
           attributes: [],
-          isArrayNullable: true,
-          association: {
-            connectionType: 'HAS_MANY',
-            associatedWith: ['userProperties'],
-          },
         },
         createdAt: {
           name: 'createdAt',
@@ -42,7 +72,7 @@ export const schema = {
         },
       },
       syncable: true,
-      pluralName: 'UserProperties',
+      pluralName: 'Users',
       attributes: [
         {
           type: 'model',
@@ -55,13 +85,6 @@ export const schema = {
               {
                 allow: 'public',
                 operations: ['create', 'update', 'delete', 'read'],
-              },
-              {
-                groupClaim: 'cognito:groups',
-                provider: 'userPools',
-                allow: 'groups',
-                groups: ['owners'],
-                operations: ['read', 'create', 'update', 'delete'],
               },
             ],
           },
@@ -193,20 +216,6 @@ export const schema = {
           attributes: [],
           isArrayNullable: false,
         },
-        userpropertiess: {
-          name: 'userpropertiess',
-          isArray: true,
-          type: {
-            model: 'UserPropertiesProperties',
-          },
-          isRequired: false,
-          attributes: [],
-          isArrayNullable: true,
-          association: {
-            connectionType: 'HAS_MANY',
-            associatedWith: ['properties'],
-          },
-        },
         createdAt: {
           name: 'createdAt',
           isArray: false,
@@ -244,96 +253,6 @@ export const schema = {
         },
       ],
     },
-    UserPropertiesProperties: {
-      name: 'UserPropertiesProperties',
-      fields: {
-        id: {
-          name: 'id',
-          isArray: false,
-          type: 'ID',
-          isRequired: true,
-          attributes: [],
-        },
-        userPropertiesId: {
-          name: 'userPropertiesId',
-          isArray: false,
-          type: 'ID',
-          isRequired: false,
-          attributes: [],
-        },
-        propertiesId: {
-          name: 'propertiesId',
-          isArray: false,
-          type: 'ID',
-          isRequired: false,
-          attributes: [],
-        },
-        userProperties: {
-          name: 'userProperties',
-          isArray: false,
-          type: {
-            model: 'UserProperties',
-          },
-          isRequired: true,
-          attributes: [],
-          association: {
-            connectionType: 'BELONGS_TO',
-            targetNames: ['userPropertiesId'],
-          },
-        },
-        properties: {
-          name: 'properties',
-          isArray: false,
-          type: {
-            model: 'Properties',
-          },
-          isRequired: true,
-          attributes: [],
-          association: {
-            connectionType: 'BELONGS_TO',
-            targetNames: ['propertiesId'],
-          },
-        },
-        createdAt: {
-          name: 'createdAt',
-          isArray: false,
-          type: 'AWSDateTime',
-          isRequired: false,
-          attributes: [],
-          isReadOnly: true,
-        },
-        updatedAt: {
-          name: 'updatedAt',
-          isArray: false,
-          type: 'AWSDateTime',
-          isRequired: false,
-          attributes: [],
-          isReadOnly: true,
-        },
-      },
-      syncable: true,
-      pluralName: 'UserPropertiesProperties',
-      attributes: [
-        {
-          type: 'model',
-          properties: {},
-        },
-        {
-          type: 'key',
-          properties: {
-            name: 'byUserProperties',
-            fields: ['userPropertiesId'],
-          },
-        },
-        {
-          type: 'key',
-          properties: {
-            name: 'byProperties',
-            fields: ['propertiesId'],
-          },
-        },
-      ],
-    },
   },
   enums: {
     Direction: {
@@ -359,6 +278,25 @@ export const schema = {
     },
   },
   nonModels: {
+    Propertyshare: {
+      name: 'Propertyshare',
+      fields: {
+        propertyId: {
+          name: 'propertyId',
+          isArray: false,
+          type: 'String',
+          isRequired: false,
+          attributes: [],
+        },
+        ownership: {
+          name: 'ownership',
+          isArray: false,
+          type: 'Float',
+          isRequired: false,
+          attributes: [],
+        },
+      },
+    },
     Shareholder: {
       name: 'Shareholder',
       fields: {
@@ -380,5 +318,5 @@ export const schema = {
     },
   },
   codegenVersion: '3.4.4',
-  version: '9c0d5f21b6a96959f9028d135db43547',
+  version: 'aaef91ce1d4fd999145a5d9f5b51370a',
 };
